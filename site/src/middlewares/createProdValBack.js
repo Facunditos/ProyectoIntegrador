@@ -22,17 +22,6 @@ const createProdValBack = [
     validator.check('price')
     .notEmpty().withMessage('Tenés que ingresar un precio')
     .isInt().withMessage("El precio debe ser un número"),
-    validator.check('imageProd')
-    .notEmpty().withMessage('Debes subir una imagen en formato .JPG, .JPEG, .PNG o .GIF')
-    .custom( imageProd => {           
-        let isExtValid = true;
-          imageProd.forEach(image => {
-            if (!(image.mimetype == "image/png" || image.mimetype == "image/jpg" || image.mimetype == "image/jpeg" || image.mimetype == "image/gif")){
-              isExtValid = false;
-            }
-          });
-          return isExtValid;
-      }).withMessage("Solo se permite formato .gif, .png, .jpg y .jpeg"),
     validator.check('description')
     .notEmpty().withMessage('La descripción del producto no puede estar vacía')
     .isLength({min: 20}).withMessage("El nombre debe tener al menos 20 carácteres"),

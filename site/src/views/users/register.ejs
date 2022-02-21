@@ -89,8 +89,8 @@
                                     <label class="label">Categoría:</label>
                                     <select name="category" id="category" class="barra">
                                         <option value="">Elegí</option>
-                                        <option value="user" <% if (locals.errors && !errors.category && locals.oldData.category=="user"){ %> <%= "selected" %> <% } %> >User</option>
-                                        <option value="admin" <% if (locals.errors && !errors.category && locals.oldData.category=="admin"){ %> <%= "selected" %> <% } %> >Admin</option>
+                                        <option value="User" <% if (locals.errors && !errors.category && locals.oldData.category=="User"){ %> <%= "selected" %> <% } %> >User</option>
+                                        <option value="Admin" <% if (locals.errors && !errors.category && locals.oldData.category=="Admin"){ %> <%= "selected" %> <% } %> >Admin</option>
                                     </select>
                                     <div class="texto-error">
                                         <%if (locals.errors && errors.category) {%>

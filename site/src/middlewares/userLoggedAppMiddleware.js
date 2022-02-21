@@ -2,22 +2,23 @@ const db=require("../database/models/index")
 
 function userLoggedAppMiddleware(req, res, next) {
    res.locals.userIsLogged = false;
-
+   
    let emailInCookie = req.cookies.userEmail;
-   if (emailInCookie) {
+   
+   let emailInSession=req.session.emailUserLoggedIn
+   if (emailInCookie || emailInSession) {
       db.User.findOne({
       where:{
-         email:emailInCookie
+         email:emailInCookie||emailInSession
       }
       })
       .then(user=>{
+         
+         
          if (user) {
-         req.session.userLoggedIn = user;
-         }
-         if (req.session.userLoggedIn) {
          res.locals.userIsLogged = true;
          // lo pasa a locals para poder mostrarlo en el header
-         res.locals.userLoggedIn = req.session.userLoggedIn;
+         res.locals.userLoggedIn = user;
          }
          next();
       })
@@ -25,8 +26,7 @@ function userLoggedAppMiddleware(req, res, next) {
    } else {
     next();  
    }
-   
-   
+ 
 }
 
 module.exports = userLoggedAppMiddleware

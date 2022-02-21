@@ -15,6 +15,7 @@ const usersController =
         if (req.method == "GET") {         // Si el metodo es GET muestra el formulario de registro de usuario
             return res.render("../views/users/register");
         } else {
+            console.log(req.body)
             db.User.findOne({
                 where:{
                     email:req.body.email
@@ -56,7 +57,7 @@ const usersController =
     loginProcess: async (req, res) => {
 
         const userToLogin = await db.User.findOne({ where: { email: req.body.email } });
-
+        
 
         // si no encuentra el email devuelve null
         if (userToLogin !== null) {
@@ -70,7 +71,10 @@ const usersController =
                 delete userToLogin.password;
                 // guardo el usuario loggeado
                 req.session.userLoggedIn = userToLogin;
+                req.session.emailUserLoggedIn = userToLogin.email;
 
+                console.log("---------controlador---------");
+                console.log(req.session);
                 if (req.body.keepSessionOpen) {
                     // se mantiene abierta por 7 dias
                     res.cookie('userEmail', req.body.email, { maxAge: (60 * 1000) * 60 * 24 * 7 });

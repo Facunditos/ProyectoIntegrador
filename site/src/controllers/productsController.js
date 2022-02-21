@@ -62,6 +62,7 @@ const productsController = {
   // CREATE - Form to create
   create: (req, res) => {
     const validation = validationResult(req)
+    console.log(validation)
     if (req.method == "GET") {         // Si el metodo es GET muestra el formulario
       // se requieren las tablas secundarias necesarias para crear un producto 
       const producerPromise = db.Producer.findAll()
@@ -91,6 +92,8 @@ const productsController = {
 
       db.Product.create(req.body)
         .then(productoCreado => {
+          console.log("--------creación---")
+          console.log(productoCreado);
           //funcionalidad para crear un registro en la tabla intermedia winemaker_product
           const arrayIdWinemakers = req.body.winemaker_id//almaceno en una variable el array que contiene el/los id del/los winemaker/s elegidos en el formulario
           const arrayIdWinemakersValidos = arrayIdWinemakers.filter(winemaker_id => winemaker_id != "")//Si el producto creado no tiene un segundo enólogo, el segundo elemento del array anterior es un string vacío, por lo tanto, aplico un filtro para limpiarlo 

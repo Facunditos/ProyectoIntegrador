@@ -47,7 +47,7 @@ window.addEventListener("load", function () {
 
     const emailRegistrado = document.createElement("p")
     emailRegistrado.setAttribute("id", "emailRegistrado")
-    emailRegistrado.textContent = "Ya existe una cuenta con este correo electrónico, iniciá sesión con la contraseña ingresada oportunamente"
+    emailRegistrado.textContent = "Ya existe una cuenta con este correo electrónico, iniciá sesión con su correo y la contraseña ingresada oportunamente"
     emailRegistrado.classList = "texto-error"
 
     const emailError = document.createElement("p")
@@ -188,7 +188,6 @@ window.addEventListener("load", function () {
 
 
         }
-
 
 
 
